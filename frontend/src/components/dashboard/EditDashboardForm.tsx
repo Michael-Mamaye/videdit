@@ -204,6 +204,9 @@ const EditDashboardForm = ({ data }: props) => {
 						<Button
 							color="secondary"
 							variant="outlined"
+							onClick={() => {
+								navigate("/dashboard");
+							}}
 							sx={{
 								position: "relative",
 								marginTop: 18.5,

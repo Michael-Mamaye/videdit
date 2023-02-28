@@ -4,10 +4,10 @@ import {
 	List,
 	ListItem,
 	ListItemButton,
-	ListItemIcon,
 	ListItemText,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const drawerWidth = 220;
 const useStyles = makeStyles((theme: any) => ({
@@ -29,11 +29,17 @@ type props = {
 };
 const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 	const classes = useStyles();
+	const { pathname } = useLocation();
+	const navigate = useNavigate();
 	const menusData = [
-		{ name: "Dashboard", icon: <Dashboard /> },
-		{ name: "Users", icon: <Person /> },
-		{ name: "Notifications", icon: <Notifications /> },
-		{ name: "Reports", icon: <Report /> },
+		{ name: "Dashboard", routeTo: "/dashboard", icon: <Dashboard /> },
+		{ name: "Users", routeTo: "/users", icon: <Person /> },
+		{
+			name: "Notifications",
+			routeTo: "/notifications",
+			icon: <Notifications />,
+		},
+		{ name: "Reports", routeTo: "/reports", icon: <Report /> },
 	];
 	return (
 		<Drawer
@@ -51,7 +57,10 @@ const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 				{menusData.map((item) => (
 					<ListItem key={item.name} disablePadding>
 						<ListItemButton
-							selected={item.name === "Dashboard"}
+							selected={pathname.includes(item.routeTo)}
+							onClick={() => {
+								navigate(item.routeTo);
+							}}
 							sx={{
 								paddingLeft: 3,
 								marginBottom: "10px",
@@ -60,19 +69,20 @@ const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 									borderLeft: "5px solid #1769aa",
 									color: "#1769aa",
 								},
-								":hover": {
+								"&.Mui-focus": {
+									backgroundColor: "#D1E9FD",
+									borderLeft: "5px solid #1769aa",
+									color: "#1769aa",
+								},
+
+								"&:hover": {
 									backgroundColor: "#D1E9FD",
 									borderLeft: "5px solid #1769aa",
 									color: "#1769aa",
 								},
 							}}>
-							<ListItemIcon
-								sx={{
-									color: item.name === "Dashboard" ? "#1769aa" : "",
-								}}>
-								{item.icon}
-							</ListItemIcon>
-							<ListItemText primary={item.name} />
+							{item.icon}
+							<ListItemText primary={item.name} sx={{ marginLeft: 3 }} />
 						</ListItemButton>
 					</ListItem>
 				))}
