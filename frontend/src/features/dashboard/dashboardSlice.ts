@@ -12,10 +12,8 @@ export const dashboardSlice = createSlice({
 	initialState,
 	reducers: {
 		searchDashboardData: (state, action: PayloadAction<string>) => {
-			state.dashboardData = state.dashboardData.filter(
-				(item) =>
-					item.username.includes(action.payload) ||
-					item.title.includes(action.payload)
+			state.dashboardData = state.dashboardData.filter((item) =>
+				item.tags.includes(action.payload)
 			);
 		},
 		updateDashboardData: (

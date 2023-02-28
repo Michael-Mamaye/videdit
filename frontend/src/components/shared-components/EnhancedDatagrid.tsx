@@ -26,10 +26,12 @@ const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
 						onChange={(e) => setSearchText(e.target.value)}
 						id="navbar-searchfield"
 						size="small"
+						name="searchVideoField"
 						variant="filled"
 						hiddenLabel
-						placeholder="Search Here"
+						placeholder="Search videos via hashtags"
 						value={searchText}
+						defaultValue={searchText}
 						InputProps={{
 							endAdornment: (
 								<IconButton onClick={() => onSearchChange(searchText)}>
