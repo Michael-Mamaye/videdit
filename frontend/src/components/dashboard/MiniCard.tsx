@@ -14,7 +14,6 @@ const MiniCard = ({ cardName, amounts, icon }: props) => {
 				backgroundColor: "white",
 				borderRadius: 3,
 				padding: 3,
-				marginTop: 2,
 				display: "flex",
 				flexDirection: "row",
 				justifyContent: "space-between",

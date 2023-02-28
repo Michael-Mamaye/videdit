@@ -9,7 +9,7 @@ type props = {
 	onSearchChange: (e: string) => void;
 };
 const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
-	const [searchText, setSearchText] = useState<string>("");
+	const [searchText, setSearchText] = useState("");
 	function CustomGridToolbar() {
 		return (
 			<GridToolbarContainer sx={{ py: 1.5, borderBottom: "1px solid #dbdbdb" }}>
@@ -30,7 +30,6 @@ const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
 						variant="filled"
 						hiddenLabel
 						placeholder="Search videos via hashtags"
-						value={searchText}
 						defaultValue={searchText}
 						InputProps={{
 							endAdornment: (
@@ -66,7 +65,7 @@ const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
 	return (
 		<DataGrid
 			columns={columns}
-			rows={rows}
+			rows={rows || []}
 			components={{
 				Toolbar: CustomGridToolbar,
 			}}

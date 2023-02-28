@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Header from "./header/Header";
 import Sidebar from "./sidebar/Sidebar";
 
-const drawerWidth = 260;
+const drawerWidth = 220;
 const useStyles = makeStyles((theme: any) => ({
 	content: {
 		...theme.typography.mainContent,

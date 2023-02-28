@@ -16,6 +16,17 @@ export const getFormattedDate = (date: Date): String => {
 	// });
 	return new Date(date).toDateString();
 };
+export const getTimeFromDate = (date: Date) => {
+	var today = new Date(date);
+
+	return today.toLocaleDateString("en-US", {
+		hour: "2-digit",
+		hour12: true,
+		minute: "2-digit",
+		hourCycle: "h12",
+		dayPeriod: "short",
+	});
+};
 export const getThousandsToK = (data: number): string => {
 	return `${data}K`;
 };

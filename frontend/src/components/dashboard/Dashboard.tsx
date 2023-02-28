@@ -11,102 +11,119 @@ import {
 	GridRenderCellParams,
 } from "@mui/x-data-grid";
 import { getFormattedDate, getThousandsToK } from "../../utils/utils";
-import { searchDashboardData } from "../../features/dashboard/dashboardSlice";
+import {
+	deleteDashboardData,
+	searchDashboardData,
+} from "../../features/dashboard/dashboardSlice";
 import { Title } from "../shared-components/Title";
 import { DeleteIcon } from "../shared-components/icons/DeleteIcon";
 import { EditIcon } from "../shared-components/icons/EditIcon";
-
-const columnD: GridColDef[] = [
-	{
-		field: "thumbnail",
-		headerName: "Thumbnail",
-		width: 190,
-		renderCell: (params: GridRenderCellParams): React.ReactNode => {
-			return (
-				<img
-					style={{
-						height: 55,
-						width: 100,
-						borderRadius: 10,
-					}}
-					src={`${params.row.thumbnail}`}
-					alt="thumbnail"
-					loading="lazy"
-				/>
-			);
-		},
-	},
-	{
-		field: "title",
-		headerName: "Video Title",
-		width: 190,
-	},
-	{
-		field: "username",
-		headerName: "Username",
-		width: 190,
-		valueGetter: (params: GridValueGetterParams): String => {
-			return `@${params.row.username}`;
-		},
-	},
-	{
-		field: "timestamp",
-		headerName: "Upload Date",
-		width: 190,
-		valueGetter: (params: GridValueGetterParams): String => {
-			return getFormattedDate(params.row.timestamp);
-		},
-	},
-	{
-		field: "views",
-		headerName: "Views",
-		width: 190,
-		valueGetter: (params: GridValueGetterParams): string => {
-			return getThousandsToK(params.row.reactions.views);
-		},
-	},
-	{
-		field: "comment",
-		headerName: "Comments",
-		width: 190,
-		valueGetter: (params: GridValueGetterParams): string => {
-			return params.row.reactions.comment;
-		},
-	},
-	{
-		field: "reactions",
-		headerName: "Likes",
-		width: 190,
-		valueGetter: (params: GridValueGetterParams): string => {
-			return getThousandsToK(params.row.reactions.likes);
-		},
-	},
-	{
-		field: "edit",
-		headerName: "Edit",
-		width: 190,
-		renderCell: (params: GridRenderCellParams): React.ReactNode => {
-			return <EditIcon />;
-		},
-	},
-	{
-		field: "delete",
-		headerName: "Delete",
-		width: 190,
-		renderCell: (params: GridRenderCellParams): React.ReactNode => {
-			return <DeleteIcon />;
-		},
-	},
-];
+import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
 	const dashboardData: DashboardStateType[] = useSelector(
 		(state: RootState) => state.dashboard.dashboardData
 	);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
 	const onSearchChange = async (text: string) => {
 		await dispatch(searchDashboardData(text));
 	};
+	const columnD: GridColDef[] = [
+		{
+			field: "thumbnail",
+			headerName: "Thumbnail",
+			width: 153,
+			renderCell: (params: GridRenderCellParams): React.ReactNode => {
+				return (
+					<img
+						style={{
+							height: 55,
+							width: 100,
+							borderRadius: 10,
+						}}
+						src={`${params.row.thumbnail}`}
+						alt="thumbnail"
+						loading="lazy"
+					/>
+				);
+			},
+		},
+		{
+			field: "title",
+			headerName: "Video Title",
+			width: 153,
+		},
+		{
+			field: "username",
+			headerName: "Username",
+			width: 153,
+			valueGetter: (params: GridValueGetterParams): String => {
+				return `@${params.row.username}`;
+			},
+		},
+		{
+			field: "timestamp",
+			headerName: "Upload Date",
+			width: 153,
+			valueGetter: (params: GridValueGetterParams): String => {
+				return getFormattedDate(params.row.timestamp);
+			},
+		},
+		{
+			field: "views",
+			headerName: "Views",
+			width: 153,
+			valueGetter: (params: GridValueGetterParams): string => {
+				return getThousandsToK(params.row.reactions.views);
+			},
+		},
+		{
+			field: "comment",
+			headerName: "Comments",
+			width: 153,
+			valueGetter: (params: GridValueGetterParams): string => {
+				return params.row.reactions.comment;
+			},
+		},
+		{
+			field: "reactions",
+			headerName: "Likes",
+			width: 153,
+			valueGetter: (params: GridValueGetterParams): string => {
+				return getThousandsToK(params.row.reactions.likes);
+			},
+		},
+		{
+			field: "edit",
+			headerName: "Edit",
+			width: 153,
+			renderCell: (params: GridRenderCellParams): React.ReactNode => {
+				return (
+					<EditIcon
+						onClick={() => {
+							navigate(`/dashboard/editdata/${params.row.id}`);
+						}}
+					/>
+				);
+			},
+		},
+		{
+			field: "delete",
+			headerName: "Delete",
+			width: 153,
+			renderCell: (params: GridRenderCellParams): React.ReactNode => {
+				return (
+					<DeleteIcon
+						onClick={() => {
+							dispatch(deleteDashboardData(params.row.id));
+						}}
+					/>
+				);
+			},
+		},
+	];
 
 	return (
 		<Box>

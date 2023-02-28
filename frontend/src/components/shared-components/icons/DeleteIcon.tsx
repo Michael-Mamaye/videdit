@@ -1,8 +1,11 @@
 import { Icon, IconButton } from "@mui/material";
 
-export const DeleteIcon = () => {
+type props = {
+	onClick: () => void;
+};
+export const DeleteIcon = ({ onClick }: props) => {
 	return (
-		<IconButton>
+		<IconButton onClick={onClick}>
 			<Icon sx={{ height: 30, width: 30 }}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

@@ -1,8 +1,11 @@
 import { Icon, IconButton } from "@mui/material";
 
-export const EditIcon = () => {
+type props = {
+	onClick: () => void;
+};
+export const EditIcon = ({ onClick }: props) => {
 	return (
-		<IconButton>
+		<IconButton onClick={onClick}>
 			<Icon sx={{ height: 30, width: 30, color: "#2196f3" }}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

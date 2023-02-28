@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-const drawerWidth = 260;
+const drawerWidth = 220;
 const useStyles = makeStyles((theme: any) => ({
 	drawerPaper: {
 		width: drawerWidth,
@@ -53,7 +53,7 @@ const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 						<ListItemButton
 							selected={item.name === "Dashboard"}
 							sx={{
-								paddingLeft: 6,
+								paddingLeft: 3,
 								marginBottom: "10px",
 								"&.Mui-selected": {
 									backgroundColor: "#D1E9FD",
