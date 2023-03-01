@@ -7,7 +7,6 @@ import {
 	Grid,
 	IconButton,
 	MenuItem,
-	Select,
 	TextField,
 } from "@mui/material";
 import { DashboardStateType } from "../../features/types/StateTypes";
@@ -17,9 +16,20 @@ import { AddBoxTwoTone } from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { updateDashboardData } from "../../features/dashboard/dashboardSlice";
 import { useNavigate } from "react-router-dom";
+import { ChevronDown } from "../shared-components/icons/ChevronDown";
 
 type props = {
 	data: DashboardStateType;
+};
+
+const formControlStyle = {
+	marginTop: 2,
+	rowGap: 1,
+	"& .MuiOutlinedInput-root": {
+		"&.Mui-focused fieldset": {
+			borderColor: "black", // change the border color to blue when the input is focused
+		},
+	},
 };
 const EditDashboardForm = ({ data }: props) => {
 	const dispatch = useDispatch();
@@ -29,12 +39,30 @@ const EditDashboardForm = ({ data }: props) => {
 		dispatch(updateDashboardData({ id: data.id, data: singleData }));
 		navigate("/dashboard");
 	});
+	const SelectTextField = () => (
+		<TextField
+			hiddenLabel
+			select
+			size="small"
+			defaultValue="lorem ipsum"
+			SelectProps={{
+				IconComponent: ChevronDown,
+			}}
+			InputProps={{
+				disableUnderline: true,
+				sx: {
+					borderRadius: 2,
+				},
+			}}>
+			<MenuItem value="lorem ipsum">lorem ipsum</MenuItem>
+		</TextField>
+	);
 	return (
 		<Box>
 			<form onSubmit={onSubmit}>
 				<Grid container spacing={3}>
 					<Grid item xs={6}>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Video Title</FormLabel>
 							<TextField
 								size="small"
@@ -54,19 +82,11 @@ const EditDashboardForm = ({ data }: props) => {
 								}}
 							/>
 						</FormControl>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Category</FormLabel>
-							<Select
-								fullWidth
-								value={data?.category}
-								defaultValue={data?.category}
-								size="small"
-								// {...register("category")}
-								placeholder="Bill">
-								<MenuItem value={data?.category}>{data?.category}</MenuItem>
-							</Select>
+							<SelectTextField />
 						</FormControl>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Add Hashtag</FormLabel>
 							<TextField
 								size="small"
@@ -88,7 +108,7 @@ const EditDashboardForm = ({ data }: props) => {
 						</FormControl>
 					</Grid>
 					<Grid item xs={6}>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Subject</FormLabel>
 							<TextField
 								size="small"
@@ -108,20 +128,11 @@ const EditDashboardForm = ({ data }: props) => {
 								}}
 							/>
 						</FormControl>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Primers</FormLabel>
-							<Select
-								fullWidth
-								defaultValue={data?.primers}
-								size="small"
-								{...register("primers")}
-								placeholder="primers">
-								<MenuItem defaultValue={data?.category}>
-									{data?.category}
-								</MenuItem>
-							</Select>
+							<SelectTextField />
 						</FormControl>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Current Hashtag</FormLabel>
 							<TextField
 								size="small"
@@ -146,58 +157,46 @@ const EditDashboardForm = ({ data }: props) => {
 						<Divider
 							textAlign="left"
 							sx={{
-								fontWeight: "bold",
-								fontSize: 18,
-								marginLeft: 0,
-								paddingLeft: 0,
+								display: "flex",
+								flexDirection: "row",
+								alignItems: "center",
+								justifyContent: "left",
+								"&::before, &::after": {
+									content: '""',
+									flex: 1,
+									textAlign: "left",
+									borderBottom: `1px solid black`,
+								},
+								"&::before": {
+									marginRight: 1,
+								},
+								"&::after": {
+									marginLeft: 1,
+								},
 							}}>
 							Levels
 						</Divider>
 					</Grid>
 					<Grid item xs={6}>
-						<FormControl fullWidth sx={{ rowGap: 1 }}>
+						<FormControl fullWidth sx={{ ...formControlStyle, marginTop: 0 }}>
 							<FormLabel>Level 1</FormLabel>
-							<Select
-								fullWidth
-								value="lorem ipsum"
-								size="small"
-								placeholder="lorem ipsum">
-								<MenuItem value="lorem ipsum">lorem ipsum</MenuItem>
-							</Select>
+							<SelectTextField />
 						</FormControl>
 						<FormControl
 							fullWidth
-							sx={{ marginTop: 2, marginBottom: { sm: 2 }, rowGap: 1 }}>
+							sx={{ ...formControlStyle, marginBottom: { sm: 2 } }}>
 							<FormLabel>Level 2</FormLabel>
-							<Select
-								fullWidth
-								value="lorem ipsum"
-								size="small"
-								placeholder="lorem ipsum">
-								<MenuItem value="lorem ipsum">lorem ipsum</MenuItem>
-							</Select>
+							<SelectTextField />
 						</FormControl>
 					</Grid>
 					<Grid item xs={6}>
-						<FormControl fullWidth sx={{ rowGap: 1 }}>
+						<FormControl fullWidth sx={{ ...formControlStyle, marginTop: 0 }}>
 							<FormLabel>Level 3</FormLabel>
-							<Select
-								fullWidth
-								value="lorem ipsum"
-								size="small"
-								placeholder="lorem ipsum">
-								<MenuItem value="lorem ipsum">lorem ipsum</MenuItem>
-							</Select>
+							<SelectTextField />
 						</FormControl>
-						<FormControl fullWidth sx={{ marginTop: 2, rowGap: 1 }}>
+						<FormControl fullWidth sx={formControlStyle}>
 							<FormLabel>Level 4</FormLabel>
-							<Select
-								fullWidth
-								value="lorem ipsum"
-								size="small"
-								placeholder="lorem ipsum">
-								<MenuItem value="lorem ipsum">lorem ipsum</MenuItem>
-							</Select>
+							<SelectTextField />
 						</FormControl>
 					</Grid>
 					<Grid item xs={6}>
@@ -209,7 +208,7 @@ const EditDashboardForm = ({ data }: props) => {
 							}}
 							sx={{
 								position: "relative",
-								marginTop: 19.5,
+								marginTop: 18.5,
 								bottom: 1,
 								width: "100%",
 								borderRadius: 3,
@@ -225,7 +224,7 @@ const EditDashboardForm = ({ data }: props) => {
 							type="submit"
 							sx={{
 								position: "relative",
-								marginTop: 19.5,
+								marginTop: 18.5,
 								bottom: 1,
 								width: "100%",
 								borderRadius: 3,

@@ -1,10 +1,4 @@
-import {
-	CalendarViewDayOutlined,
-	CommentOutlined,
-	ThumbUpOutlined,
-	ViewCarouselOutlined,
-	WatchOutlined,
-} from "@mui/icons-material";
+
 import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +6,11 @@ import { RootState } from "../../app/store";
 import { deleteDashboardData } from "../../features/dashboard/dashboardSlice";
 import { DashboardStateType } from "../../features/types/StateTypes";
 import { getFormattedDate, getTimeFromDate } from "../../utils/utils";
+import { CalendarIcon } from "../shared-components/icons/CalendarIcon";
+import { Clock } from "../shared-components/icons/Clock";
+import { CommentIcon } from "../shared-components/icons/CommentIcon";
+import { HeartIcon } from "../shared-components/icons/HeartIcon";
+import { PlayIcon } from "../shared-components/icons/PlayIcon";
 import { Title } from "../shared-components/Title";
 import EditDashboardForm from "./EditDashboardForm";
 
@@ -65,13 +64,13 @@ const EditDashboard = () => {
 									maxWidth: 500,
 								}}>
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
-									<CalendarViewDayOutlined fontSize="small" />
+									<CalendarIcon fontSize="small" />
 									<Typography>
 										{getFormattedDate(singleDashData.timestamp)}
 									</Typography>
 								</Box>
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
-									<WatchOutlined fontSize="small" />
+									<Clock fontSize="small" />
 									<Typography>
 										{getTimeFromDate(singleDashData.timestamp)}
 									</Typography>
@@ -82,7 +81,7 @@ const EditDashboard = () => {
 									<video
 										style={{
 											position: "absolute",
-											minHeight: 400,
+											minHeight: "100%",
 											width: "100%",
 											maxWidth: 600,
 											border: "1px solid #dbdbdb",
@@ -105,15 +104,15 @@ const EditDashboard = () => {
 									maxWidth: 500,
 								}}>
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
-									<ThumbUpOutlined fontSize="small" />
+									<HeartIcon fontSize="small" />
 									<Typography>{singleDashData?.reactions.likes}</Typography>
 								</Box>
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
-									<CommentOutlined fontSize="small" />
+									<CommentIcon fontSize="small" />
 									<Typography>{singleDashData?.reactions.comment}</Typography>
 								</Box>
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
-									<ViewCarouselOutlined fontSize="small" />
+									<PlayIcon fontSize="small" />
 									<Typography>{singleDashData?.reactions.views}</Typography>
 								</Box>
 							</Box>
