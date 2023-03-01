@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Header from "./header/Header";
 import Sidebar from "./sidebar/Sidebar";
 
@@ -45,14 +45,16 @@ const MainLayout = ({ children }: props) => {
 	const handleToggleMenu = () => {
 		setShowDrawer(!showDrawer);
 	};
-
-	window.addEventListener("resize", () => {
-		if (window.innerWidth <= 899) {
-			setShowMenuIcon(true);
-		} else {
-			setShowMenuIcon(false);
-		}
-	});
+	useLayoutEffect(() => {
+		window.scrollTo(0, 0);
+		window.addEventListener("resize", () => {
+			if (window.innerWidth <= 899) {
+				setShowMenuIcon(true);
+			} else {
+				setShowMenuIcon(false);
+			}
+		});
+	}, []);
 
 	return (
 		<div>

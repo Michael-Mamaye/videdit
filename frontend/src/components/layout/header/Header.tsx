@@ -8,7 +8,8 @@ import {
 	Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { ArrowDropDownOutlined, SearchOutlined } from "@mui/icons-material";
+import { SearchOutlined } from "@mui/icons-material";
+import { ChevronDown } from "../../shared-components/icons/ChevronDown";
 
 type props = {
 	handleToggleMenu: () => void;
@@ -23,9 +24,9 @@ const Header = ({ handleToggleMenu, showMenuIcon }: props) => {
 	return (
 		<AppBar
 			position="fixed"
-			elevation={1}
 			sx={{
 				zIndex: (theme) => theme.zIndex.drawer + 1,
+				boxShadow: "0px 2px 5px #ECEFF5",
 			}}>
 			<Toolbar sx={{ border: "none" }}>
 				<Box
@@ -79,7 +80,7 @@ const Header = ({ handleToggleMenu, showMenuIcon }: props) => {
 						/>
 						<Box sx={{ ...flexRowBoxStyle, marginLeft: 5 }}>
 							<Avatar />
-							<ArrowDropDownOutlined />
+							<ChevronDown />
 						</Box>
 					</Box>
 				</Box>

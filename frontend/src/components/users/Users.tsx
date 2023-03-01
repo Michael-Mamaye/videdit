@@ -1,10 +1,10 @@
-import { Avatar, Box, Grid, IconButton } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import { DashboardStateType } from "../../features/types/StateTypes";
 import EnhancedDataGrid from "../shared-components/EnhancedDatagrid";
-import MiniCard from "./MiniCard";
+
 import {
 	GridColDef,
 	GridValueGetterParams,
@@ -20,7 +20,7 @@ import { DeleteIcon } from "../shared-components/icons/DeleteIcon";
 import { EditIcon } from "../shared-components/icons/EditIcon";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard: React.FC = () => {
+const Users: React.FC = () => {
 	const dashboardData: DashboardStateType[] = useSelector(
 		(state: RootState) => state.dashboard.dashboardData
 	);
@@ -129,43 +129,14 @@ const Dashboard: React.FC = () => {
 
 	return (
 		<Box>
-			<Box>
-				<Title title="Dashboard" />
-				<Grid container spacing={3}>
-					<Grid item xs={12} md={4}>
-						<MiniCard
-							cardName="Total Users"
-							amounts="60 million"
-							icon={<Avatar alt="alt Text" sx={{ width: 80, height: 80 }} />}
-						/>
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<MiniCard
-							cardName="Total Reports"
-							amounts="10,000"
-							icon={<Avatar alt="alt Text" sx={{ width: 80, height: 80 }} />}
-						/>
-					</Grid>
-					<Grid item xs={12} md={4}>
-						<MiniCard
-							cardName="Total Posts"
-							amounts="1.5 Billion"
-							icon={<Avatar alt="alt Text" sx={{ width: 80, height: 80 }} />}
-						/>
-					</Grid>
-				</Grid>
-			</Box>
-
-			<Box sx={{ marginTop: 10 }}>
-				<Title title="Videos" />
-				<EnhancedDataGrid
-					columns={columnD}
-					rows={dashboardData}
-					onSearchChange={onSearchChange}
-				/>
-			</Box>
+			<Title title="Users" />
+			<EnhancedDataGrid
+				columns={columnD}
+				rows={dashboardData}
+				onSearchChange={onSearchChange}
+			/>
 		</Box>
 	);
 };
 
-export default Dashboard;
+export default Users;

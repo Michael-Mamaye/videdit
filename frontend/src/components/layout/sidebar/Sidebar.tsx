@@ -64,21 +64,16 @@ const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 							sx={{
 								paddingLeft: 3,
 								marginBottom: "10px",
+								borderLeft: "5px solid #ffffff",
 								"&.Mui-selected": {
 									backgroundColor: "#D1E9FD",
-									borderLeft: "5px solid #1769aa",
-									color: "#1769aa",
+									borderLeft: "5px solid #0056ff",
+									color: "#0056ff",
 								},
-								"&.Mui-focus": {
-									backgroundColor: "#D1E9FD",
-									borderLeft: "5px solid #1769aa",
-									color: "#1769aa",
-								},
-
 								"&:hover": {
 									backgroundColor: "#D1E9FD",
-									borderLeft: "5px solid #1769aa",
-									color: "#1769aa",
+									borderLeft: "5px solid #0056ff",
+									color: "#0056ff",
 								},
 							}}>
 							{item.icon}

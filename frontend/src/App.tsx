@@ -6,6 +6,9 @@ import MainLayout from "./components/layout";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
 import EditDashboard from "./components/dashboard/EditDashboard";
+import Users from "./components/users/Users";
+import Notifications from "./components/notifications/Notifications";
+import Reports from "./components/reports/Reports";
 
 function App() {
 	return (
@@ -13,12 +16,12 @@ function App() {
 			<CssBaseline />
 			<MainLayout>
 				<Routes>
-					<Route path="/" element={<Navigate to="/users/home" replace />} />
+					<Route path="/" element={<Navigate to="/dashboard" replace />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					<Route path="/dashboard/editdata/:id" element={<EditDashboard />} />
-					<Route path="/users" element={<Dashboard />} />
-					<Route path="/notifications" element={<Dashboard />} />
-					<Route path="/reports" element={<Dashboard />} />
+					<Route path="/users" element={<Users />} />
+					<Route path="/notifications" element={<Notifications />} />
+					<Route path="/reports" element={<Reports />} />
 					<Route path="/reports" element={<div>Page not found</div>} />
 				</Routes>
 			</MainLayout>

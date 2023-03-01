@@ -1,18 +1,44 @@
-import { SearchOutlined } from "@mui/icons-material";
-import { Box, IconButton, MenuItem, Select, TextField } from "@mui/material";
+import { ChevronLeft, ChevronRight, SearchOutlined } from "@mui/icons-material";
+import {
+	Box,
+	IconButton,
+	MenuItem,
+	Pagination,
+	PaginationItem,
+	TextField,
+} from "@mui/material";
 import { DataGrid, GridColDef, GridToolbarContainer } from "@mui/x-data-grid";
 import { useState } from "react";
+
+import { useForm } from "react-hook-form";
+import { ChevronDown } from "./icons/ChevronDown";
 
 type props = {
 	columns: GridColDef[];
 	rows: any[];
 	onSearchChange: (e: string) => void;
 };
+
+const paginationBtnStyle = {
+	display: "flex",
+	flexDirection: "row",
+	alignItems: "center",
+};
 const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
-	const [searchText, setSearchText] = useState("");
+	const { getValues, register } = useForm();
+	const [paginationState, setPaginationState] = useState({
+		pageSize: 9,
+		page: 1,
+		count: Math.ceil(rows.length / 9),
+	});
 	function CustomGridToolbar() {
 		return (
-			<GridToolbarContainer sx={{ py: 1.5, borderBottom: "1px solid #dbdbdb" }}>
+			<GridToolbarContainer
+				sx={{
+					py: 1.5,
+					borderBottom: "1px solid #dbdbdb",
+					position: "relative",
+				}}>
 				<Box
 					sx={{
 						display: "flex",
@@ -23,17 +49,17 @@ const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
 					}}>
 					<TextField
 						fullWidth
-						onChange={(e) => setSearchText(e.target.value)}
+						{...register("searchText")}
 						id="navbar-searchfield"
 						size="small"
-						name="searchVideoField"
+						name="searchText"
 						variant="filled"
 						hiddenLabel
 						placeholder="Search videos via hashtags"
-						defaultValue={searchText}
+						defaultValue={getValues("searchText")}
 						InputProps={{
 							endAdornment: (
-								<IconButton onClick={() => onSearchChange(searchText)}>
+								<IconButton>
 									<SearchOutlined />
 								</IconButton>
 							),
@@ -44,31 +70,76 @@ const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
 							},
 						}}
 					/>
-					<Select
-						size="small"
+					<TextField
 						variant="filled"
-						value="Last-7-Days"
-						defaultChecked
-						disableUnderline
-						sx={{ borderRadius: 1, width: 150, textAlign: "center" }}>
-						<MenuItem value="Last-7-Days" selected>
-							Last 7 Days
-						</MenuItem>
-						<MenuItem value="Last-Month">Last Month</MenuItem>
-						<MenuItem value="Last-6-Month">Last 6 Month</MenuItem>
-						<MenuItem value="Last-Year">Last Year</MenuItem>
-					</Select>
+						hiddenLabel
+						select
+						size="small"
+						defaultValue="Last 7 Days"
+						value={getValues("filterDate")}
+						SelectProps={{
+							IconComponent: ChevronDown,
+						}}
+						InputProps={{
+							disableUnderline: true,
+							sx: {
+								width: { xs: 140, md: 140 },
+								borderRadius: 2,
+								mr: 2,
+							},
+						}}>
+						<MenuItem value="Last 7 Days">Last 7 Days</MenuItem>
+						<MenuItem value="Last Month">Last Month</MenuItem>
+						<MenuItem value="Last Year">Last Year</MenuItem>
+					</TextField>
 				</Box>
 			</GridToolbarContainer>
 		);
 	}
+	function CustomPagination(paginProps: any) {
+		return (
+			<Pagination
+				{...paginProps}
+				shape="rounded"
+				sx={{ color: "#dbdbdb" }}
+				page={paginationState.page}
+				count={paginationState.count}
+				onChange={(e, newpage) => {
+					console.log("pagination", newpage);
+					setPaginationState({ ...paginationState, page: newpage });
+				}}
+				renderItem={(item) => (
+					<PaginationItem
+						components={{
+							next: () => (
+								<Box sx={paginationBtnStyle}>
+									Next
+									<ChevronRight />
+								</Box>
+							),
+							previous: () => (
+								<Box sx={paginationBtnStyle}>
+									<ChevronLeft />
+									Prev
+								</Box>
+							),
+						}}
+						{...item}
+					/>
+				)}
+			/>
+		);
+	}
+
 	return (
 		<DataGrid
 			columns={columns}
 			rows={rows || []}
 			components={{
 				Toolbar: CustomGridToolbar,
+				Pagination: CustomPagination,
 			}}
+			componentsProps={{}}
 			sx={{
 				height: 800,
 				px: 2,
@@ -104,6 +175,8 @@ const EnhancedDataGrid = ({ columns, rows, onSearchChange }: props) => {
 				},
 			}}
 			getRowClassName={() => "paxton-table--row"}
+			page={paginationState.page - 1}
+			pageSize={paginationState.pageSize}
 		/>
 	);
 };

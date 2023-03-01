@@ -209,7 +209,7 @@ const EditDashboardForm = ({ data }: props) => {
 							}}
 							sx={{
 								position: "relative",
-								marginTop: 18.5,
+								marginTop: 19.5,
 								bottom: 1,
 								width: "100%",
 								borderRadius: 3,
@@ -225,7 +225,7 @@ const EditDashboardForm = ({ data }: props) => {
 							type="submit"
 							sx={{
 								position: "relative",
-								marginTop: 18.5,
+								marginTop: 19.5,
 								bottom: 1,
 								width: "100%",
 								borderRadius: 3,
