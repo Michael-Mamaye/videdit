@@ -1,4 +1,3 @@
-
 import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -81,7 +80,7 @@ const EditDashboard = () => {
 									<video
 										style={{
 											position: "absolute",
-											minHeight: "100%",
+											minHeight: 400,
 											width: "100%",
 											maxWidth: 600,
 											border: "1px solid #dbdbdb",

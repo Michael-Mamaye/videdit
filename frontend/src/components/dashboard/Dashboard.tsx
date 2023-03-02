@@ -1,4 +1,4 @@
-import { Avatar, Box, Grid, IconButton } from "@mui/material";
+import { Box, Grid, IconButton } from "@mui/material";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/store";
@@ -19,6 +19,9 @@ import { Title } from "../shared-components/Title";
 import { DeleteIcon } from "../shared-components/icons/DeleteIcon";
 import { EditIcon } from "../shared-components/icons/EditIcon";
 import { useNavigate } from "react-router-dom";
+const ManIcon = require("../../assets/manpic.png");
+const ReportIcon = require("../../assets/report.png");
+const PostsIcon = require("../../assets/posts.png");
 
 const Dashboard: React.FC = () => {
 	const dashboardData: DashboardStateType[] = useSelector(
@@ -136,21 +139,39 @@ const Dashboard: React.FC = () => {
 						<MiniCard
 							cardName="Total Users"
 							amounts="60 million"
-							icon={<Avatar alt="alt Text" sx={{ width: 80, height: 80 }} />}
+							icon={
+								<img
+									alt="man icon"
+									src={ManIcon}
+									style={{ width: 80, height: 80 }}
+								/>
+							}
 						/>
 					</Grid>
 					<Grid item xs={12} md={4}>
 						<MiniCard
 							cardName="Total Reports"
 							amounts="10,000"
-							icon={<Avatar alt="alt Text" sx={{ width: 80, height: 80 }} />}
+							icon={
+								<img
+									src={ReportIcon}
+									alt="report icon"
+									style={{ width: 80, height: 80 }}
+								/>
+							}
 						/>
 					</Grid>
 					<Grid item xs={12} md={4}>
 						<MiniCard
 							cardName="Total Posts"
 							amounts="1.5 Billion"
-							icon={<Avatar alt="alt Text" sx={{ width: 80, height: 80 }} />}
+							icon={
+								<img
+									src={PostsIcon}
+									alt="posts icon"
+									style={{ width: 80, height: 80 }}
+								/>
+							}
 						/>
 					</Grid>
 				</Grid>

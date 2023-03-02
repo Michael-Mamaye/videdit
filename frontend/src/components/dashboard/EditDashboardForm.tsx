@@ -5,7 +5,6 @@ import {
 	FormControl,
 	FormLabel,
 	Grid,
-	IconButton,
 	MenuItem,
 	TextField,
 } from "@mui/material";
@@ -27,7 +26,7 @@ const formControlStyle = {
 	rowGap: 1,
 	"& .MuiOutlinedInput-root": {
 		"&.Mui-focused fieldset": {
-			borderColor: "black", // change the border color to blue when the input is focused
+			borderColor: "#dbdbdb",
 		},
 	},
 };
@@ -35,9 +34,10 @@ const EditDashboardForm = ({ data }: props) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const { register, handleSubmit } = useForm<DashboardStateType>();
-	const onSubmit = handleSubmit((singleData) => {
-		dispatch(updateDashboardData({ id: data.id, data: singleData }));
-		navigate("/dashboard");
+	const onSubmit = handleSubmit((formData) => {
+		console.log(formData);
+		// dispatch(updateDashboardData({ id: data.id, data: formData }));
+		// navigate("/dashboard");
 	});
 	const SelectTextField = () => (
 		<TextField
@@ -49,7 +49,6 @@ const EditDashboardForm = ({ data }: props) => {
 				IconComponent: ChevronDown,
 			}}
 			InputProps={{
-				disableUnderline: true,
 				sx: {
 					borderRadius: 2,
 				},
@@ -70,19 +69,18 @@ const EditDashboardForm = ({ data }: props) => {
 								{...register("title")}
 								placeholder="Video Title"
 								InputProps={{
-									endAdornment: (
-										<IconButton>
-											<PencilIcon onClick={() => {}} />
-										</IconButton>
-									),
-									disableUnderline: true,
+									endAdornment: <PencilIcon />,
+
 									sx: {
 										borderRadius: 2,
 									},
 								}}
 							/>
 						</FormControl>
-						<FormControl fullWidth sx={formControlStyle}>
+						<FormControl
+							fullWidth
+							sx={formControlStyle}
+							{...register("category")}>
 							<FormLabel>Category</FormLabel>
 							<SelectTextField />
 						</FormControl>
@@ -94,12 +92,8 @@ const EditDashboardForm = ({ data }: props) => {
 								{...register("tags")}
 								placeholder="Keyword"
 								InputProps={{
-									endAdornment: (
-										<IconButton sx={{ ml: 2 }}>
-											<AddBoxTwoTone />
-										</IconButton>
-									),
-									disableUnderline: true,
+									endAdornment: <AddBoxTwoTone sx={{ mr: -0.5 }} />,
+
 									sx: {
 										borderRadius: 2,
 									},
@@ -116,12 +110,8 @@ const EditDashboardForm = ({ data }: props) => {
 								{...register("subject")}
 								placeholder="Subject"
 								InputProps={{
-									endAdornment: (
-										<IconButton>
-											<PencilIcon onClick={() => {}} />
-										</IconButton>
-									),
-									disableUnderline: true,
+									endAdornment: <PencilIcon />,
+
 									sx: {
 										borderRadius: 2,
 									},
@@ -140,12 +130,8 @@ const EditDashboardForm = ({ data }: props) => {
 								{...register("tags")}
 								placeholder="Current Hashtag"
 								InputProps={{
-									endAdornment: (
-										<IconButton>
-											<PencilIcon onClick={() => {}} />
-										</IconButton>
-									),
-									disableUnderline: true,
+									endAdornment: <PencilIcon />,
+
 									sx: {
 										borderRadius: 2,
 									},
@@ -161,18 +147,6 @@ const EditDashboardForm = ({ data }: props) => {
 								flexDirection: "row",
 								alignItems: "center",
 								justifyContent: "left",
-								"&::before, &::after": {
-									content: '""',
-									flex: 1,
-									textAlign: "left",
-									borderBottom: `1px solid black`,
-								},
-								"&::before": {
-									marginRight: 1,
-								},
-								"&::after": {
-									marginLeft: 1,
-								},
 							}}>
 							Levels
 						</Divider>

@@ -1,4 +1,4 @@
-import { Dashboard, Person, Report, Notifications } from "@mui/icons-material";
+import { Dashboard, Person, Notifications } from "@mui/icons-material";
 import {
 	Drawer,
 	List,
@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ReportIcon } from "../../shared-components/icons/ReportIcon";
 
 const drawerWidth = 220;
 const useStyles = makeStyles((theme: any) => ({
@@ -39,7 +40,7 @@ const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 			routeTo: "/notifications",
 			icon: <Notifications />,
 		},
-		{ name: "Reports", routeTo: "/reports", icon: <Report /> },
+		{ name: "Reports", routeTo: "/reports", icon: <ReportIcon /> },
 	];
 	return (
 		<Drawer

@@ -78,7 +78,14 @@ const Header = ({ handleToggleMenu, showMenuIcon }: props) => {
 								},
 							}}
 						/>
-						<Box sx={{ ...flexRowBoxStyle, marginLeft: 5 }}>
+						<Box
+							sx={{
+								...flexRowBoxStyle,
+								marginLeft: 5,
+								":hover": {
+									cursor: "pointer",
+								},
+							}}>
 							<Avatar />
 							<ChevronDown />
 						</Box>
