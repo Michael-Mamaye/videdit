@@ -47,7 +47,11 @@ const EditDashboard = () => {
 						<Box>
 							{/* user name with avatar box */}
 							<Box sx={{ ...flexRowBoxStyle, columnGap: 3 }}>
-								<Avatar alt="alt Text" sx={{ width: 60, height: 60 }} />
+								<Avatar
+									src={require("../../assets/profile.png")}
+									alt="alt Text"
+									sx={{ width: 60, height: 60 }}
+								/>
 								<Box>
 									<Typography>By Chris Evans</Typography>
 									<Typography

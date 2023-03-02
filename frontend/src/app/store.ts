@@ -7,6 +7,5 @@ export const store = configureStore({
 	},
 });
 
+// we will use this state when we selecting state using useSelector hook
 export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;

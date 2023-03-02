@@ -3,6 +3,7 @@ import {
 	Avatar,
 	Box,
 	IconButton,
+	Popover,
 	TextField,
 	Toolbar,
 	Typography,
@@ -10,6 +11,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { SearchOutlined } from "@mui/icons-material";
 import { ChevronDown } from "../../shared-components/icons/ChevronDown";
+import { useState } from "react";
 
 type props = {
 	handleToggleMenu: () => void;
@@ -21,6 +23,14 @@ const flexRowBoxStyle = {
 	alignItems: "center",
 };
 const Header = ({ handleToggleMenu, showMenuIcon }: props) => {
+	const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
+	const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 	return (
 		<AppBar
 			position="fixed"
@@ -73,24 +83,47 @@ const Header = ({ handleToggleMenu, showMenuIcon }: props) => {
 								),
 								disableUnderline: true,
 								sx: {
-									width: { sm: 160, md: 450 },
+									width: { xs: 130, sm: 260, md: 450 },
 									borderRadius: 2,
 								},
 							}}
 						/>
 						<Box
+							id="profileMenu"
 							sx={{
 								...flexRowBoxStyle,
-								marginLeft: 5,
+								marginLeft: { xs: 1, sm: 5 },
 								":hover": {
 									cursor: "pointer",
 								},
-							}}>
-							<Avatar />
+							}}
+							onClick={(e) => handleClick(e)}>
+							<Avatar src={require("../../../assets/profile.png")} />
 							<ChevronDown />
 						</Box>
 					</Box>
 				</Box>
+				<Popover
+					id="profileMenu"
+					open={Boolean(anchorEl)}
+					anchorEl={anchorEl}
+					onClose={handleClose}
+					anchorOrigin={{
+						vertical: "bottom",
+						horizontal: "left",
+					}}>
+					<Box sx={{ minWidth: 400, p: 5 }}>
+						<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
+							<Avatar src={require("../../../assets/profile.png")} />
+							<Box>
+								<Typography>Mike MG</Typography>
+								<Typography variant="body2" color="text.secondary">
+									@mikemg
+								</Typography>
+							</Box>
+						</Box>
+					</Box>
+				</Popover>
 			</Toolbar>
 		</AppBar>
 	);

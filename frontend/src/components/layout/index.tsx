@@ -37,8 +37,14 @@ const useStyles = makeStyles((theme: any) => ({
 type props = {
 	children: React.ReactNode;
 };
-
-const MainLayout = ({ children }: props) => {
+/**
+ *
+ * @param MainLayout has a children prop to be rendered inside main card
+ * 					- this component is used to wrap other components with sidebar
+ * 						and app bar.
+ * @returns  a header, sidebar and the component that currently passed as a prop
+ */
+const MainLayout: React.FC<props> = ({ children }) => {
 	const classes = useStyles();
 	const [showMenuIcon, setShowMenuIcon] = useState(false); // used to show menu icon on small screen to hide sidebar
 	const [showDrawer, setShowDrawer] = useState(false); //used to set drawer open or not

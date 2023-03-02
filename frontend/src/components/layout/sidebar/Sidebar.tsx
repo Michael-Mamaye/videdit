@@ -28,6 +28,17 @@ type props = {
 	showDrawer: boolean;
 	handleToggleMenu: () => void;
 };
+/**
+ *
+ * @param   Sidebar is a drawer component which is
+ * 					- fixed when the size of the screen is  greater than 899
+ * 					- temporary if the size of the screen is <= 899
+ * @param showMenuIcon is a boolean value which will be true
+ * 					when drawer variant is temporary.
+ * @param handleToggleMenu is used to set showMenuIcon to true or false
+ * @returns drawer component i.e the sidebar
+ */
+
 const Sidebar = ({ showMenuIcon, showDrawer, handleToggleMenu }: props) => {
 	const classes = useStyles();
 	const { pathname } = useLocation();

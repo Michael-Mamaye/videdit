@@ -11,10 +11,7 @@ import {
 	GridRenderCellParams,
 } from "@mui/x-data-grid";
 import { getFormattedDate, getThousandsToK } from "../../utils/utils";
-import {
-	deleteDashboardData,
-	searchDashboardData,
-} from "../../features/dashboard/dashboardSlice";
+import { deleteDashboardData } from "../../features/dashboard/dashboardSlice";
 import { Title } from "../shared-components/Title";
 import { DeleteIcon } from "../shared-components/icons/DeleteIcon";
 import { EditIcon } from "../shared-components/icons/EditIcon";
@@ -30,9 +27,6 @@ const Dashboard: React.FC = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const onSearchChange = async (text: string) => {
-		await dispatch(searchDashboardData(text));
-	};
 	const columnD: GridColDef[] = [
 		{
 			field: "thumbnail",
@@ -179,11 +173,7 @@ const Dashboard: React.FC = () => {
 
 			<Box sx={{ marginTop: 10 }}>
 				<Title title="Videos" />
-				<EnhancedDataGrid
-					columns={columnD}
-					rows={dashboardData}
-					onSearchChange={onSearchChange}
-				/>
+				<EnhancedDataGrid columns={columnD} rows={dashboardData} />
 			</Box>
 		</Box>
 	);

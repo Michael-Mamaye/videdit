@@ -11,11 +11,6 @@ export const dashboardSlice = createSlice({
 	name: "dashboardData",
 	initialState,
 	reducers: {
-		searchDashboardData: (state, action: PayloadAction<string>) => {
-			state.dashboardData = state.dashboardData.filter((item) =>
-				item.tags.includes(action.payload)
-			);
-		},
 		updateDashboardData: (
 			state,
 			action: PayloadAction<{ data: DashboardStateType; id: string }>
@@ -23,7 +18,9 @@ export const dashboardSlice = createSlice({
 			state.dashboardData = state.dashboardData.map((item) => {
 				if (item.id === action.payload.id) {
 					item.title = action.payload.data.title;
-					item.subject = action.payload.data.title;
+					item.subject = action.payload.data.subject;
+					item.category = action.payload.data.category;
+					item.tags = action.payload.data.tags;
 				}
 				return item;
 			});
@@ -37,11 +34,7 @@ export const dashboardSlice = createSlice({
 	},
 });
 
-export const {
-	searchDashboardData,
-	updateDashboardData,
-	addDashboardData,
-	deleteDashboardData,
-} = dashboardSlice.actions;
+export const { updateDashboardData, addDashboardData, deleteDashboardData } =
+	dashboardSlice.actions;
 
 export default dashboardSlice.reducer;
