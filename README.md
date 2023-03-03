@@ -1,3 +1,2 @@
 # videdit
-React with Typescript simple dashboard 
-it has dashboard, user, notification, and reports menu
+React with Typescript simple dashboard used to list some data and edit them
