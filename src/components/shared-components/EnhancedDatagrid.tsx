@@ -182,6 +182,7 @@ const EnhancedDataGrid = ({ columns, rows }: props) => {
 				px: 2,
 				background: "white",
 				borderRadius: 3,
+				overflowX: "auto",
 				border: "none",
 				"& .MuiDataGrid-iconSeparator": {
 					display: "none",

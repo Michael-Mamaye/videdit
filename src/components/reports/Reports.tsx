@@ -29,6 +29,7 @@ const Reports: React.FC = () => {
 			field: "thumbnail",
 			headerName: "Thumbnail",
 			flex: 1,
+			minWidth: 110,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<img
@@ -48,11 +49,13 @@ const Reports: React.FC = () => {
 			field: "title",
 			headerName: "Video Title",
 			flex: 1,
+			minWidth: 110,
 		},
 		{
 			field: "username",
 			headerName: "Username",
 			flex: 1,
+			minWidth: 110,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return `@${params.row.username}`;
 			},
@@ -61,6 +64,7 @@ const Reports: React.FC = () => {
 			field: "timestamp",
 			headerName: "Upload Date",
 			flex: 1,
+			minWidth: 110,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return getFormattedDate(params.row.timestamp);
 			},
@@ -69,6 +73,7 @@ const Reports: React.FC = () => {
 			field: "views",
 			headerName: "Views",
 			flex: 1,
+			minWidth: 110,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.views);
 			},
@@ -77,6 +82,7 @@ const Reports: React.FC = () => {
 			field: "comment",
 			headerName: "Comments",
 			flex: 1,
+			minWidth: 110,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return params.row.reactions.comment;
 			},
@@ -85,6 +91,7 @@ const Reports: React.FC = () => {
 			field: "reactions",
 			headerName: "Likes",
 			flex: 1,
+			minWidth: 110,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.likes);
 			},
@@ -93,6 +100,7 @@ const Reports: React.FC = () => {
 			field: "edit",
 			headerName: "Edit",
 			flex: 1,
+			minWidth: 110,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
@@ -108,6 +116,7 @@ const Reports: React.FC = () => {
 			field: "delete",
 			headerName: "Delete",
 			flex: 1,
+			minWidth: 110,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton

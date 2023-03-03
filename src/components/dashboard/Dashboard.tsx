@@ -32,6 +32,7 @@ const Dashboard: React.FC = () => {
 			field: "thumbnail",
 			headerName: "Thumbnail",
 			flex: 1,
+			minWidth: 100,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<img
@@ -51,11 +52,13 @@ const Dashboard: React.FC = () => {
 			field: "title",
 			headerName: "Video Title",
 			flex: 1,
+			minWidth: 100,
 		},
 		{
 			field: "username",
 			headerName: "Username",
 			flex: 1,
+			minWidth: 100,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return `@${params.row.username}`;
 			},
@@ -64,6 +67,7 @@ const Dashboard: React.FC = () => {
 			field: "timestamp",
 			headerName: "Upload Date",
 			flex: 1,
+			minWidth: 100,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return getFormattedDate(params.row.timestamp);
 			},
@@ -72,6 +76,7 @@ const Dashboard: React.FC = () => {
 			field: "views",
 			headerName: "Views",
 			flex: 1,
+			minWidth: 100,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.views);
 			},
@@ -80,6 +85,7 @@ const Dashboard: React.FC = () => {
 			field: "comment",
 			headerName: "Comments",
 			flex: 1,
+			minWidth: 100,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return params.row.reactions.comment;
 			},
@@ -88,6 +94,7 @@ const Dashboard: React.FC = () => {
 			field: "reactions",
 			headerName: "Likes",
 			flex: 1,
+			minWidth: 100,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.likes);
 			},
@@ -96,6 +103,7 @@ const Dashboard: React.FC = () => {
 			field: "edit",
 			headerName: "Edit",
 			flex: 1,
+			minWidth: 100,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
@@ -111,6 +119,7 @@ const Dashboard: React.FC = () => {
 			field: "delete",
 			headerName: "Delete",
 			flex: 1,
+			minWidth: 110,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
