@@ -36,7 +36,7 @@ const EditDashboard = () => {
 			}}>
 			<Title title={`Video Edit`} />
 
-			<Grid container columnSpacing={3}>
+			<Grid container columnSpacing={3} rowSpacing={3}>
 				<Grid item xs={12} md={12} lg={3.5}>
 					<Box
 						sx={{
@@ -144,7 +144,7 @@ const EditDashboard = () => {
 				<Grid item xs={12} md={12} lg={8.5}>
 					<Box
 						sx={{
-							height: "100%",
+							height: { xs: "115%", sm: "115%", md: "115%", lg: "100%" },
 							px: 3,
 							paddingTop: 2,
 							paddingBottom: 4,
