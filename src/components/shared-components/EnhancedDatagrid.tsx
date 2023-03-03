@@ -119,7 +119,7 @@ const EnhancedDataGrid = ({ columns, rows }: props) => {
 
 		const filteredRows = rows.filter((row: any) => {
 			let existed = row.tags.filter((eachTag: string) =>
-				eachTag.toLowerCase().includes(searchValue)
+				eachTag.toLowerCase().includes(searchValue.toLowerCase())
 			);
 
 			return existed.length > 0;
