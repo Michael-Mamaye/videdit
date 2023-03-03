@@ -30,11 +30,14 @@ const EditDashboard = () => {
 		(item) => item.id === currentId
 	)[0];
 	return (
-		<Box sx={{ mb: 5 }}>
+		<Box
+			sx={{
+				mb: 5,
+			}}>
 			<Title title={`Video Edit`} />
 
-			<Grid container spacing={3}>
-				<Grid item xs={12} md={12} lg={3}>
+			<Grid container columnSpacing={3}>
+				<Grid item xs={12} md={12} lg={3.5}>
 					<Box
 						sx={{
 							display: "flex",
@@ -129,9 +132,8 @@ const EditDashboard = () => {
 								navigate("/dashboard");
 							}}
 							sx={{
-								position: "relative",
-								marginTop: 10,
-								bottom: 1,
+								marginTop: 20,
+								marginBottom: 0,
 								width: "100%",
 								borderRadius: 3,
 							}}>
@@ -139,11 +141,10 @@ const EditDashboard = () => {
 						</Button>
 					</Box>
 				</Grid>
-				<Grid item xs={12} md={12} lg={8}>
+				<Grid item xs={12} md={12} lg={8.5}>
 					<Box
 						sx={{
-							display: "flex",
-							flexDirection: "column",
+							height: "100%",
 							px: 3,
 							paddingTop: 2,
 							paddingBottom: 4,

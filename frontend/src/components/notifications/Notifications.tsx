@@ -28,7 +28,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "thumbnail",
 			headerName: "Thumbnail",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<img
@@ -47,12 +47,12 @@ const Notifications: React.FC = () => {
 		{
 			field: "title",
 			headerName: "Video Title",
-			width: 153,
+			flex: 1,
 		},
 		{
 			field: "username",
 			headerName: "Username",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return `@${params.row.username}`;
 			},
@@ -60,7 +60,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "timestamp",
 			headerName: "Upload Date",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return getFormattedDate(params.row.timestamp);
 			},
@@ -68,7 +68,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "views",
 			headerName: "Views",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.views);
 			},
@@ -76,7 +76,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "comment",
 			headerName: "Comments",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return params.row.reactions.comment;
 			},
@@ -84,7 +84,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "reactions",
 			headerName: "Likes",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.likes);
 			},
@@ -92,7 +92,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "edit",
 			headerName: "Edit",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
@@ -107,7 +107,7 @@ const Notifications: React.FC = () => {
 		{
 			field: "delete",
 			headerName: "Delete",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton

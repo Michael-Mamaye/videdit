@@ -11,9 +11,7 @@ import {
 	GridRenderCellParams,
 } from "@mui/x-data-grid";
 import { getFormattedDate, getThousandsToK } from "../../utils/utils";
-import {
-	deleteDashboardData,
-} from "../../features/dashboard/dashboardSlice";
+import { deleteDashboardData } from "../../features/dashboard/dashboardSlice";
 import { Title } from "../shared-components/Title";
 import { DeleteIcon } from "../shared-components/icons/DeleteIcon";
 import { EditIcon } from "../shared-components/icons/EditIcon";
@@ -30,7 +28,7 @@ const Users: React.FC = () => {
 		{
 			field: "thumbnail",
 			headerName: "Thumbnail",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<img
@@ -49,12 +47,12 @@ const Users: React.FC = () => {
 		{
 			field: "title",
 			headerName: "Video Title",
-			width: 153,
+			flex: 1,
 		},
 		{
 			field: "username",
 			headerName: "Username",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return `@${params.row.username}`;
 			},
@@ -62,7 +60,7 @@ const Users: React.FC = () => {
 		{
 			field: "timestamp",
 			headerName: "Upload Date",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return getFormattedDate(params.row.timestamp);
 			},
@@ -70,7 +68,7 @@ const Users: React.FC = () => {
 		{
 			field: "views",
 			headerName: "Views",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.views);
 			},
@@ -78,7 +76,7 @@ const Users: React.FC = () => {
 		{
 			field: "comment",
 			headerName: "Comments",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return params.row.reactions.comment;
 			},
@@ -86,7 +84,7 @@ const Users: React.FC = () => {
 		{
 			field: "reactions",
 			headerName: "Likes",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.likes);
 			},
@@ -94,7 +92,7 @@ const Users: React.FC = () => {
 		{
 			field: "edit",
 			headerName: "Edit",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
@@ -109,7 +107,7 @@ const Users: React.FC = () => {
 		{
 			field: "delete",
 			headerName: "Delete",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
@@ -126,10 +124,7 @@ const Users: React.FC = () => {
 	return (
 		<Box>
 			<Title title="Users" />
-			<EnhancedDataGrid
-				columns={columnD}
-				rows={dashboardData}
-			/>
+			<EnhancedDataGrid columns={columnD} rows={dashboardData} />
 		</Box>
 	);
 };

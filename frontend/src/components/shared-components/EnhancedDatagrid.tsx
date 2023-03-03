@@ -6,14 +6,86 @@ import {
 	Pagination,
 	PaginationItem,
 	TextField,
-	Tooltip,
 } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbarContainer } from "@mui/x-data-grid";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 
 import { ChevronDown } from "./icons/ChevronDown";
 
+interface CustomGridToolbarProps {
+	onChange: () => void;
+	value: string;
+}
+/**
+ *
+ * @param CustomGridToolbar customized grid toolbar with onChange and value prop
+ * 					to handle search.
+ * @returns toolbar for datagrid
+ */
+function CustomGridToolbar(props: CustomGridToolbarProps) {
+	return (
+		<GridToolbarContainer
+			sx={{
+				py: 1.5,
+				borderBottom: "1px solid #dbdbdb",
+				position: "relative",
+			}}>
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "row",
+					justifyContent: "space-between",
+					alignItems: "center",
+					width: "100%",
+				}}>
+				<TextField
+					fullWidth
+					id="navbar-searchfield"
+					size="small"
+					name="searchText"
+					variant="filled"
+					value={props.value}
+					onChange={props.onChange}
+					hiddenLabel
+					placeholder="Search videos via hashtags"
+					InputProps={{
+						endAdornment: (
+							<IconButton>
+								<SearchOutlined />
+							</IconButton>
+						),
+						disableUnderline: true,
+						sx: {
+							width: { xs: 180, sm: 250, md: 450, lg: 450 },
+							borderRadius: 2,
+						},
+					}}
+				/>
+				<TextField
+					variant="filled"
+					hiddenLabel
+					select
+					size="small"
+					defaultValue="Last 7 Days"
+					SelectProps={{
+						IconComponent: ChevronDown,
+					}}
+					InputProps={{
+						disableUnderline: true,
+						sx: {
+							width: { xs: 110, sm: 140, md: 140 },
+							borderRadius: 2,
+							mr: { xs: 4, sm: 4, md: 2 },
+						},
+					}}>
+					<MenuItem value="Last 7 Days">Last 7 Days</MenuItem>
+					<MenuItem value="Last Month">Last Month</MenuItem>
+					<MenuItem value="Last Year">Last Year</MenuItem>
+				</TextField>
+			</Box>
+		</GridToolbarContainer>
+	);
+}
 type props = {
 	columns: GridColDef[];
 	rows: any[];
@@ -32,95 +104,29 @@ const paginationBtnStyle = {
  * 					- has custom pagination and GridToolbar with search and filter fields
  * @returns  a datagrid table with pagination and GridToolbar
  */
+
 const EnhancedDataGrid = ({ columns, rows }: props) => {
-	const { register, getValues } = useForm();
-	const [filteredData, setFilteredData] = useState(rows);
+	const [searchText, setSearchText] = useState("");
+	const [filteredData, setFilteredData] = useState<any[]>(rows);
+
 	const [paginationState, setPaginationState] = useState({
 		pageSize: 9,
 		page: 1,
 		count: Math.ceil(rows.length / 9),
 	});
-	const onSearchChange = (text: string) => {
-		if (text) {
-			setFilteredData(
-				rows.filter((item) => {
-					if (item.tags.indexOf(text) > -1) return true;
-					else return false;
-				})
+	const onSearchFieldChanged = (searchValue: string) => {
+		setSearchText(searchValue);
+
+		const filteredRows = rows.filter((row: any) => {
+			let existed = row.tags.filter((eachTag: string) =>
+				eachTag.toLowerCase().includes(searchValue)
 			);
-		} else setFilteredData(rows);
+
+			return existed.length > 0;
+		});
+		setFilteredData(filteredRows);
 	};
 
-	function CustomGridToolbar() {
-		return (
-			<GridToolbarContainer
-				sx={{
-					py: 1.5,
-					borderBottom: "1px solid #dbdbdb",
-					position: "relative",
-				}}>
-				<Box
-					sx={{
-						display: "flex",
-						flexDirection: "row",
-						justifyContent: "space-between",
-						alignItems: "center",
-						width: "100%",
-					}}>
-					<Tooltip
-						title="Write the keyword then click search icon"
-						placement="bottom-start">
-						<TextField
-							fullWidth
-							{...register("searchText")}
-							id="navbar-searchfield"
-							size="small"
-							name="searchText"
-							variant="filled"
-							hiddenLabel
-							placeholder="Search videos via hashtags"
-							InputProps={{
-								endAdornment: (
-									<IconButton
-										onClick={() => {
-											onSearchChange(getValues("searchText"));
-										}}>
-										<SearchOutlined />
-									</IconButton>
-								),
-								disableUnderline: true,
-								sx: {
-									width: { xs: 180, sm: 250, md: 450, lg: 450 },
-									borderRadius: 2,
-								},
-							}}
-						/>
-					</Tooltip>
-					<TextField
-						variant="filled"
-						hiddenLabel
-						select
-						size="small"
-						defaultValue="Last 7 Days"
-						SelectProps={{
-							IconComponent: ChevronDown,
-						}}
-						InputProps={{
-							disableUnderline: true,
-							sx: {
-								width: { xs: 110, sm: 140, md: 140 },
-								borderRadius: 2,
-								mr: { xs: 4, sm: 4, md: 2 },
-							},
-						}}>
-						<MenuItem value="Last 7 Days">Last 7 Days</MenuItem>
-						<MenuItem value="Last Month">Last Month</MenuItem>
-						<MenuItem value="Last Year">Last Year</MenuItem>
-					</TextField>
-				</Box>
-			</GridToolbarContainer>
-		);
-	}
 	function CustomPagination(paginProps: any) {
 		return (
 			<Pagination
@@ -162,6 +168,13 @@ const EnhancedDataGrid = ({ columns, rows }: props) => {
 			components={{
 				Toolbar: CustomGridToolbar,
 				Pagination: CustomPagination,
+			}}
+			componentsProps={{
+				toolbar: {
+					value: searchText,
+					onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+						onSearchFieldChanged(event.target.value),
+				},
 			}}
 			disableSelectionOnClick
 			sx={{

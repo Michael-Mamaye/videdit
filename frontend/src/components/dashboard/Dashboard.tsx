@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "thumbnail",
 			headerName: "Thumbnail",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<img
@@ -50,12 +50,12 @@ const Dashboard: React.FC = () => {
 		{
 			field: "title",
 			headerName: "Video Title",
-			width: 153,
+			flex: 1,
 		},
 		{
 			field: "username",
 			headerName: "Username",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return `@${params.row.username}`;
 			},
@@ -63,7 +63,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "timestamp",
 			headerName: "Upload Date",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): String => {
 				return getFormattedDate(params.row.timestamp);
 			},
@@ -71,7 +71,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "views",
 			headerName: "Views",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.views);
 			},
@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "comment",
 			headerName: "Comments",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return params.row.reactions.comment;
 			},
@@ -87,7 +87,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "reactions",
 			headerName: "Likes",
-			width: 153,
+			flex: 1,
 			valueGetter: (params: GridValueGetterParams): string => {
 				return getThousandsToK(params.row.reactions.likes);
 			},
@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "edit",
 			headerName: "Edit",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton
@@ -110,7 +110,7 @@ const Dashboard: React.FC = () => {
 		{
 			field: "delete",
 			headerName: "Delete",
-			width: 153,
+			flex: 1,
 			renderCell: (params: GridRenderCellParams): React.ReactNode => {
 				return (
 					<IconButton

@@ -34,6 +34,13 @@ const formControlStyle = {
 const formLabelStyle = {
 	fontWeight: "bold",
 };
+/**
+ *
+ * @param EditDashboardForm is used to update dashboard data
+ * 						- it has data prop which is an object and it has the value
+ * 							of a single dashboard data
+ * @returns form div with input and submit & cancel button
+ */
 const EditDashboardForm = ({ data }: props) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -74,8 +81,10 @@ const EditDashboardForm = ({ data }: props) => {
 		</TextField>
 	);
 	return (
-		<Box>
-			<form onSubmit={onSubmit}>
+		<Box sx={{ height: "100%" }}>
+			<form
+				onSubmit={onSubmit}
+				style={{ position: "relative", height: "100%" }}>
 				<Grid container spacing={3}>
 					<Grid item xs={6}>
 						<FormControl fullWidth sx={formControlStyle}>
@@ -212,6 +221,15 @@ const EditDashboardForm = ({ data }: props) => {
 							<SelectTextField />
 						</FormControl>
 					</Grid>
+				</Grid>
+				<Grid
+					container
+					spacing={3}
+					sx={{
+						top: `calc(100% - ${5}px)`,
+						marginBottom: 5,
+						position: "absolute",
+					}}>
 					<Grid item xs={6}>
 						<Button
 							color="secondary"
@@ -220,9 +238,6 @@ const EditDashboardForm = ({ data }: props) => {
 								navigate("/dashboard");
 							}}
 							sx={{
-								position: "relative",
-								marginTop: 19,
-								bottom: 1,
 								width: "100%",
 								borderRadius: 3,
 							}}>
@@ -236,9 +251,6 @@ const EditDashboardForm = ({ data }: props) => {
 							variant="contained"
 							type="submit"
 							sx={{
-								position: "relative",
-								marginTop: 19,
-								bottom: 1,
 								width: "100%",
 								borderRadius: 3,
 							}}>

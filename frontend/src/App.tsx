@@ -16,13 +16,12 @@ function App() {
 			<CssBaseline />
 			<MainLayout>
 				<Routes>
-					<Route path="/" element={<Navigate to="/dashboard" replace />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					<Route path="/dashboard/editdata/:id" element={<EditDashboard />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/notifications" element={<Notifications />} />
 					<Route path="/reports" element={<Reports />} />
-					<Route path="/reports" element={<div>Page not found</div>} />
+					<Route path="*" element={<Navigate to="/dashboard" replace />} />
 				</Routes>
 			</MainLayout>
 		</ThemeProvider>
