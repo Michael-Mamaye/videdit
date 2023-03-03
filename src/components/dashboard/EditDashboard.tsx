@@ -72,13 +72,13 @@ const EditDashboard = () => {
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
 									<CalendarIcon fontSize="small" />
 									<Typography>
-										{getFormattedDate(singleDashData.timestamp)}
+										{getFormattedDate(singleDashData?.timestamp)}
 									</Typography>
 								</Box>
 								<Box sx={{ ...flexRowBoxStyle, columnGap: 2 }}>
 									<Clock fontSize="small" />
 									<Typography>
-										{getTimeFromDate(singleDashData.timestamp)}
+										{getTimeFromDate(singleDashData?.timestamp)}
 									</Typography>
 								</Box>
 							</Box>
