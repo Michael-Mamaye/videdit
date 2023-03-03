@@ -16,6 +16,7 @@ function App() {
 			<CssBaseline />
 			<MainLayout>
 				<Routes>
+					<Route path="/" element={<Navigate to="/dashboard" replace />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					<Route path="/dashboard/editdata/:id" element={<EditDashboard />} />
 					<Route path="/users" element={<Users />} />
