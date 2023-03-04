@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/videdit/static/css/main.263f84aa.css",
-    "main.js": "/videdit/static/js/main.68aa927c.js",
+    "main.js": "/videdit/static/js/main.7dd4e0a1.js",
     "static/media/roboto-all-500-normal.woff": "/videdit/static/media/roboto-all-500-normal.0ab669b7a0d19b178f57.woff",
     "static/media/roboto-all-700-normal.woff": "/videdit/static/media/roboto-all-700-normal.a457fde362a540fcadff.woff",
     "static/media/roboto-all-400-normal.woff": "/videdit/static/media/roboto-all-400-normal.c5d001fa922fa66a147f.woff",
@@ -39,10 +39,10 @@
     "static/media/roboto-greek-ext-700-normal.woff2": "/videdit/static/media/roboto-greek-ext-700-normal.bd9854c751441ccc1a70.woff2",
     "index.html": "/videdit/index.html",
     "main.263f84aa.css.map": "/videdit/static/css/main.263f84aa.css.map",
-    "main.68aa927c.js.map": "/videdit/static/js/main.68aa927c.js.map"
+    "main.7dd4e0a1.js.map": "/videdit/static/js/main.7dd4e0a1.js.map"
   },
   "entrypoints": [
     "static/css/main.263f84aa.css",
-    "static/js/main.68aa927c.js"
+    "static/js/main.7dd4e0a1.js"
   ]
 }
