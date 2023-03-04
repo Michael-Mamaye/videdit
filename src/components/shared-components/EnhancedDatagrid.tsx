@@ -115,6 +115,11 @@ const EnhancedDataGrid = ({ columns, rows }: props) => {
 	});
 	useEffect(() => {
 		setFilteredData(rows);
+		setPaginationState({
+			...paginationState,
+			count: Math.ceil(rows.length / 9),
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [rows]);
 	const onSearchFieldChanged = (searchValue: string) => {
 		setSearchText(searchValue);
