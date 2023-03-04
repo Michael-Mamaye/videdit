@@ -8,7 +8,7 @@ import {
 	TextField,
 } from "@mui/material";
 import { DataGrid, GridColDef, GridToolbarContainer } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ChevronDown } from "./icons/ChevronDown";
 
@@ -108,12 +108,14 @@ const paginationBtnStyle = {
 const EnhancedDataGrid = ({ columns, rows }: props) => {
 	const [searchText, setSearchText] = useState("");
 	const [filteredData, setFilteredData] = useState<any[]>(rows);
-
 	const [paginationState, setPaginationState] = useState({
 		pageSize: 9,
 		page: 1,
 		count: Math.ceil(rows.length / 9),
 	});
+	useEffect(() => {
+		setFilteredData(rows);
+	}, [rows]);
 	const onSearchFieldChanged = (searchValue: string) => {
 		setSearchText(searchValue);
 
